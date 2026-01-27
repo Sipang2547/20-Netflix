@@ -1,0 +1,518 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+}
+
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+a, button {
+  outline: none;
+}
+
+input, textarea {
+  user-select: text;
+}
+
+/* 1 เรื่อง = เต็มจอ */
+.movie {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.movie .content {
+  width: 50%;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.movie .content {
+  background: rgba(0,0,0,0.55);
+  border-radius: 16px;
+}
+
+.movie {
+  justify-content: flex-start;
+}
+
+.bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    animation: bgMove 20s ease-in-out infinite;
+    transform-origin: center;
+}
+
+
+
+/* เงาดำแบบ Netflix */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.9),
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.1)
+    );
+    z-index: 1;
+}
+
+/* กล่องข้อความ */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.content p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background: #e50914;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #f6121d;
+}
+
+/* ===== อ่านเพิ่มเติม ===== */
+
+.more {
+    display: none;
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* เวลาแสดง */
+.more.show {
+    display: block;
+}
+
+.content {
+  background: rgba(0, 0, 0, 0.6); /* พื้นหลังดำโปร่ง */
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+}
+
+.summary {
+  margin-top: 40px;
+}
+
+.summary strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+  letter-spacing: 0.3px; /* เพิ่ม */
+}
+
+.summary ul {
+  padding-left: 22px;
+  margin-bottom: 20px;
+}
+
+.summary li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 2px;   /* 👈 ลดตรงนี้ */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.summary ul {
+  margin-top: 4px;   /* 👈 ดึง bullet ขึ้น */
+  padding-left: 20px;
+}
+
+.audience {
+  margin-top: 20px;
+}
+
+.audience p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+}
+
+.more p {
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.content {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 30px;
+  border-radius: 14px;
+}
+
+/* ===== Gallery ===== */
+.gallery {
+  margin-top: 25px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+#movie1 {
+  background-image: url("img/bg/fast-bg.jpg");
+}
+
+#movie2 {
+  background-image: url("img/bg/badboy-bg.jpg");
+}
+
+#movie3 {
+  background-image: url("img/bg/juman-bg.jpg");
+}
+
+
+.movie-meta {
+  white-space: nowrap;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+
+.content h1 {
+  white-space: normal;
+  overflow: visible;
+}
+
+/* รูปในแกลเลอรี */
+.gallery-grid img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+
+.gallery-grid img {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.detail.show {
+  max-height: 300px;
+}
+
+@keyframes zoomBg {
+  from {
+    background-size: 100%;
+  }
+  to {
+    background-size: 130%;
+  }
+}
+
+.hero {
+  height: 100vh;
+  background-image: url("img/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  display: flex;
+  align-items: center;       /* จัดกลางแนวตั้ง */
+  justify-content: center;   /* จัดกลางแนวนอน */
+  text-align: center;
+  color: #fff;
+}
+
+
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 20px;
+}
+
+
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #e50914;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: #ff1e1e;
+  transform: scale(1.05);
+}
+
+.hero-content {
+  animation: fadeUp 2.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1;
+  pointer-events: none; /* สำคัญมาก */
+}
+
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-overlay {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+.movie.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rating {
+  color: gold;
+  font-size: 1.2rem;
+}
+
+*:focus {
+  outline: none;
+}
+
+
+
+.next-movie {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.movie {
+  min-height: 100vh;
+  position: relative;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+  transform: none;
+}
+
+.movie .content {
+  position: relative;
+  z-index: 2;
+}
+
+.movie.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.movie-detail {
+  scroll-margin-top: 100px;
+}
+
+/* ปกติ ทุกเรื่องต้องแสดง */
+.movie {
+  min-height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+  transform: none;
+}
+
+/* animation เฉพาะเรื่องแรก */
+.movie.first {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.movie.first.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.movie {
+  min-height: 100vh;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.movie.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+  max-height: 80%;
+  margin-top: 5%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
