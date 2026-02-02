@@ -1,64 +1,77 @@
-
-
+/* ===============================
+   อ่านเพิ่มเติม
+================================ */
 function toggleDetail(btn) {
   const content = btn.closest(".content");
   const more = content.querySelector(".more");
 
   more.classList.toggle("show");
 
-  // เปลี่ยนข้อความปุ่ม
   btn.textContent = more.classList.contains("show")
     ? "ซ่อนรายละเอียด"
     : "อ่านเพิ่มเติม";
 }
 
+/* ===============================
+   Lightbox
+================================ */
 function openLightbox(img) {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
 
   lightboxImg.src = img.src;
-  lightbox.style.display = "flex";
+  lightbox.classList.add("show");
 }
 
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("show");
+}
+
+/* ===============================
+   ปุ่มเริ่มดูรายการ
+================================ */
 function goToFirstMovie() {
-  const movie = document.querySelector("#movie1");
+  const movie = document.getElementById("movie1");
 
-  const offset =30; // ระยะเผื่อหัวเว็บ (ปรับได้)
-  const y = movie.getBoundingClientRect().top + window.pageYOffset - offset;
+  if (!movie) return;
 
-  window.scrollTo({
-    top: y,
-    behavior: "smooth"
+  movie.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
   });
 
-  movie.classList.add("show");
+  // บังคับให้ animation ทำงาน
+  movie.classList.add("active");
 }
 
-const movies = document.querySelectorAll(".movie");
+
+/* =============================
+   SCROLL ANIMATION (UP + DOWN)
+============================= */
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
       }
     });
   },
-  {
-    threshold: 0.3
-  }
+  { threshold: 0.2 }
 );
 
-movies.forEach(movie => {
-  observer.observe(movie);
+document.querySelectorAll(".scroll-anim").forEach(el => {
+  observer.observe(el);
 });
 
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
+/* =============================
+   SHOW FIRST LOAD (กันหน้าหาย)
+============================= */
 
-
-
-
-
-
+window.addEventListener("load", () => {
+  document
+    .querySelectorAll(".scroll-anim")
+    .forEach(el => el.classList.add("show"));
+});
