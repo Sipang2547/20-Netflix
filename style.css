@@ -378,7 +378,7 @@ padding-bottom: 120px;
 .gallery-grid {
   display: flex;
   gap: 14px;
-  margin-top: 20px;
+  width: fit-content;
 }
 
 .gallery-grid img {
